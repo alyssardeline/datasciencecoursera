@@ -30,3 +30,14 @@ x <-c(1,2,NA, NaN, 3)
 is.na(x) ##there are 2 trues, the nan + the na
 is.nan(x) ##only 1 true, the nan
 
+#names practice
+x <- 1:3
+names(x) ##null because I didn't define names yet
+names(x) <- c("time", "temp", "replicate")
+x
+names(x) ##now names describe what data is
+m <- matrix(1:4,nrow=2,ncol=2)
+dimnames(m) <- list(c("a","b"), c("c","d"))
+m ##now rows and columns have names
+
+
