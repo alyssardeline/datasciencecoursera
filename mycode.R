@@ -40,4 +40,57 @@ m <- matrix(1:4,nrow=2,ncol=2)
 dimnames(m) <- list(c("a","b"), c("c","d"))
 m ##now rows and columns have names
 
+#Reading in Datasets
+help(read.table) ##this is key
+## use colClasses to set class for data and read in faster
+## can read in first 100 rows or so then analyze
+## use classes <- sapply(table, class) to see what classes are there
+## calculate data as rows x columns x 8 bytes/numeric / 2^20 b/mb
+## will need about 2x as much memory to read in as table contains
+##dget is for single R object, dump is for multiple objects
+
+#Subsetting
+## [ returns obj of same class as original e.g., vector, list
+## [[ extracts single element of list or dataframe
+## $ extracts by name, similar to [[
+x <- c("a","b","c", "d", "d", "a")
+x[1]
+x[2]
+x[1:4]
+x[x>"a"]
+## these all return character vectors
+u <- x > "a"
+u ## makes logical vector
+x[u] ## subset using logical index
+x<-list(foo=1:4, bar=0.6)
+x[1] ##returns a list
+x[[1]] ##returns just the sequence
+x$bar ##returns element associated with the name bar
+x[1:2] ##can get 2 element list because using single bracket
+x <- matrix(1:6, nrow=2, ncol=3)
+x
+x[1,2] ##gives vector with number 3 (from 1st row 2nd col)
+x[1,2,drop=FALSE] ## gives 1x1 matrix instead of just element
+## $ operator works with partial matching e.g., aar instead of aardvark
+
+#Removing Missing Values
+x <- c(1,2,NA,4,NA,5)
+bad <- is.na(x)
+bad ##logic vector of what is missing
+x[!bad] ##gives only existing elements
+x <- c(1,2,NA,4,NA,5)
+y <- c("a","b",NA,"d",NA,"f")
+good <- complete.cases(x,y) ##cases where both x and y exist
+good
+x[good]
+y[good]
+
+
+
+
+
+
+
+
+
 
